@@ -21,11 +21,14 @@ describe Spree::AddOn do
   end
 
   describe '::types' do
+    class Spree::AddOn::DummyAddOn < Spree::AddOn
+    end
+
     before do
-      Rails.application.config.spree.add_ons << Spree::AddOn::Dummy
+      Rails.application.config.spree.add_ons << Spree::AddOn::DummyAddOn
     end
     subject { Spree::AddOn.types }
-    it { should match_array [Spree::AddOn::Dummy] }
+    it { should match_array [Spree::AddOn::DummyAddOn] }
   end
 
   describe '::description' do
