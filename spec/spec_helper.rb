@@ -66,6 +66,11 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  # Disable the old 'should' syntax in favor of the 'expect' syntax.
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+
   # Ensure Suite is set to use transactions for speed.
   config.before :suite do
     DatabaseCleaner.strategy = :transaction

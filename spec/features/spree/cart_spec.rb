@@ -16,15 +16,15 @@ feature 'Shopping Cart' do
     end
 
     scenario 'product has add_on checkboxes' do
-      page.should have_content 'Backup CD'
-      find('#subtotal .order-total').text.should eq '$19.99'
-      find('#order_line_items_attributes_0_add_on_ids_1').should_not be_checked
+      expect(page).to have_content 'Backup CD'
+      expect(find('#subtotal .order-total').text).to eq '$19.99'
+      expect(find('#order_line_items_attributes_0_add_on_ids_1')).not_to be_checked
 
       page.check 'order_line_items_attributes_0_add_on_ids_1'
       click_button 'update-button'
 
-      find('#order_line_items_attributes_0_add_on_ids_1').should be_checked
-      find('#subtotal .order-total').text.should eq '$24.98'
+      expect(find('#order_line_items_attributes_0_add_on_ids_1')).to be_checked
+      expect(find('#subtotal .order-total').text).to eq '$24.98'
     end
   end
 end
