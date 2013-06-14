@@ -6,13 +6,14 @@ class Spree::AddOn < ActiveRecord::Base
     class_name: 'Spree::AddOnPrice',
     conditions: {currency: Spree::Config[:currency]},
     dependent: :destroy
+  delegate_belongs_to :default_price, :display_amount, :price=, :currency
 
   has_many :prices,
     class_name: 'Spree::AddOnPrice',
     dependent: :destroy
 
   def price_in(currency)
-    prices.where(currency: currency).first || Spree::Price.new(add_on_id: self.id, currency: currency)
+    prices.where(currency: currency).first || self.build_default_price(currency: currency)
   end
 
   def self.types

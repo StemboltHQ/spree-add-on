@@ -2,23 +2,22 @@
 ENV['RAILS_ENV'] = 'test'
 
 require 'simplecov'
-require 'simplecov-rcov'
-
-class SimpleCov::Formatter::MergedFormatter
-  def format(result)
-    SimpleCov::Formatter::HTMLFormatter.new.format(result)
-    SimpleCov::Formatter::RcovFormatter.new.format(result)
-  end
+SimpleCov.start do
+  add_group 'Controllers', 'app/controllers'
+  add_group 'Helpers', 'app/helpers'
+  add_group 'Mailers', 'app/mailers'
+  add_group 'Models', 'app/models'
+  add_group 'Views', 'app/views'
+  add_group 'Libraries', 'lib'
 end
-
-SimpleCov.formatter = SimpleCov::Formatter::MergedFormatter
-SimpleCov.start 'rails'
 
 require File.expand_path('../dummy/config/environment.rb',  __FILE__)
 
 require 'rspec/rails'
 require 'database_cleaner'
 require 'ffaker'
+require 'factory_girl'
+require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -29,6 +28,9 @@ require 'spree/core/testing_support/factories'
 require 'spree/core/testing_support/controller_requests'
 require 'spree/core/testing_support/authorization_helpers'
 require 'spree/core/url_helpers'
+
+# Find any extension definitions.
+FactoryGirl.find_definitions
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
