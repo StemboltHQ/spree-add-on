@@ -12,4 +12,8 @@ group :development, :test do
   gem 'pry-plus'
 end
 
+group :test do
+  gem 'shoulda-matchers'
+end
+
 gemspec

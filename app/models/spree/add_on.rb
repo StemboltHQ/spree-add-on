@@ -17,7 +17,7 @@ class Spree::AddOn < ActiveRecord::Base
   end
 
   def self.types
-    Rails.application.config.spree.add_ons.send(self.to_s.tableize.gsub('/', '_').sub('spree_', ''))
+    Rails.application.config.spree.add_ons
   end
 
   def self.description

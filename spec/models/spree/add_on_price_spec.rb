@@ -4,28 +4,20 @@ describe Spree::AddOnPrice do
   let(:add_on_price) { Spree::AddOnPrice.new }
   subject { add_on_price }
 
-  describe '#valid?' do
-    context 'when add_on is nil' do
-      it 'raises an error' do
-        expect{ subject.valid? }.to raise_error 'Price must belong to an add-on'
-      end
-    end
+  it { should belong_to :add_on }
 
-    context 'when currency is nil' do
-      before do
-        subject.add_on = mock_model Spree::AddOn
-        subject.valid?
-      end
-      its(:currency) { should eq 'USD' }
-    end
+  it { should_not allow_value(nil).for(:add_on) }
 
-    context 'when the amount is less than zero' do
-      before do
-        subject.add_on = mock_model Spree::AddOn
-        subject.amount = -1
-      end
-      it { should_not be_valid }
+  it { should allow_value(nil).for(:amount) }
+  it { should_not allow_value(-1).for(:amount) }
+
+  context 'when currency is nil' do
+    before do
+      subject.add_on = mock_model Spree::AddOn
+      subject.amount = 4.99
+      subject.save
     end
+    its(:currency) { should eq 'USD' }
   end
 
   describe '#display_amount' do

@@ -17,6 +17,13 @@ module SpreeAddOn
       end
     end
 
+    initializer 'spree.register.add_ons' do |app|
+      app.config.spree.class_eval do
+        attr_accessor :add_ons
+      end
+      app.config.spree.add_ons = []
+    end
+
     config.to_prepare &method(:activate).to_proc
   end
 end

@@ -2,8 +2,10 @@ module Spree
   class AddOnPrice < ActiveRecord::Base
     belongs_to :add_on, class_name: 'Spree::AddOn'
 
-    validate :check_price
+    validates :add_on, presence: true
     validates :amount, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+
+    before_save :set_default_currency
 
     attr_accessible :currency, :amount
 
@@ -20,8 +22,7 @@ module Spree
     end
 
     private
-    def check_price
-      raise 'Price must belong to an add-on' if self.add_on.nil?
+    def set_default_currency
       self.currency = Spree::Config[:currency] if self.currency.nil?
     end
   end
