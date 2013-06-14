@@ -1,0 +1,12 @@
+<% if variant.product.add_ons.any? %>
+  <div class='pull-right'>
+    <h5><%= Spree::AddOn.model_name.human(count: :many) %></h5>
+    <% variant.product.add_ons.each do |add_on| %>
+      <label class='checkbox'>
+        <%= check_box_tag :add_ons, add_on.id %>
+        <%= add_on.name %>
+        <span class='add-on-amount'>(<%= add_on.price_in(current_currency).display_amount %>)</span>
+      </label>
+    <% end %>
+  </div>
+<% end %>

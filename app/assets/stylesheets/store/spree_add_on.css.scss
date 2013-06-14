@@ -1,0 +1,10 @@
+@import 'store/variables';
+
+.pull-right {
+  float: right;
+}
+
+.add-on-amount {
+  font-weight: bold;
+  color: $link_text_color;
+}

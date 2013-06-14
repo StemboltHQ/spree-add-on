@@ -11,6 +11,10 @@ class Spree::AddOn < ActiveRecord::Base
     class_name: 'Spree::AddOnPrice',
     dependent: :destroy
 
+  def price_in(currency)
+    prices.where(currency: currency).first || Spree::Price.new(add_on_id: self.id, currency: currency)
+  end
+
   def self.types
     Rails.application.config.spree.add_ons.send(self.to_s.tableize.gsub('/', '_').sub('spree_', ''))
   end

@@ -3,6 +3,10 @@
 
 en:
   activerecord:
+    models:
+      spree/add_on:
+        one: 'Add-On'
+        other: 'Add-Ons'
     attributes:
       spree/add_on:
         type_description: 'Basic Add-On'
