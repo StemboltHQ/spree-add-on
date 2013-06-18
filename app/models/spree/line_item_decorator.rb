@@ -10,7 +10,7 @@ module Spree
       sha: '7baf92d48ad328ba0b772fc95a3496c9'
     }
 
-    decorate :amount, meta do
+    durably_decorate :amount, meta do
       (price + add_on_amount) * quantity
     end
 
