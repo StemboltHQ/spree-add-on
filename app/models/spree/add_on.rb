@@ -1,5 +1,5 @@
 class Spree::AddOn < ActiveRecord::Base
-  attr_accessible :description, :name
+  attr_accessible :description, :name, :type
   belongs_to :product, class_name: 'Spree::Product'
 
   has_one :default_price,
