@@ -1,5 +1,5 @@
 class Spree::AddOn < ActiveRecord::Base
-  attr_accessible :description, :name, :type
+  attr_accessible :description, :name, :type, :prices_attributes
   belongs_to :product, class_name: 'Spree::Product'
 
   has_one :default_price,
@@ -11,6 +11,8 @@ class Spree::AddOn < ActiveRecord::Base
   has_many :prices,
     class_name: 'Spree::AddOnPrice',
     dependent: :destroy
+
+  accepts_nested_attributes_for :prices
 
   def price_in(currency)
     prices.where(currency: currency).first || self.build_default_price(currency: currency)
