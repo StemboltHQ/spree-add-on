@@ -10,9 +10,10 @@ class Spree::AddOn < ActiveRecord::Base
 
   has_many :prices,
     class_name: 'Spree::AddOnPrice',
-    dependent: :destroy
+    dependent: :destroy,
+    inverse_of: :add_on
 
-  accepts_nested_attributes_for :prices
+  accepts_nested_attributes_for :prices, allow_destroy: true
 
   def price_in(currency)
     prices.where(currency: currency).first || self.build_default_price(currency: currency)

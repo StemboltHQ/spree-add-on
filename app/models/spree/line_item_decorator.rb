@@ -1,3 +1,5 @@
+require 'durable_decorator'
+
 module Spree
   LineItem.class_eval do
     has_many :line_item_add_ons, dependent: :destroy
@@ -7,7 +9,7 @@ module Spree
 
     meta = {
       mode: 'strict',
-      sha: '7baf92d48ad328ba0b772fc95a3496c9'
+      sha: '7b3df3d93294ddec78f32d1c4110d87aad7afb39'
     }
 
     durably_decorate :amount, meta do
