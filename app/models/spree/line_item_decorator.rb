@@ -5,6 +5,7 @@ module Spree
     has_many :line_item_add_ons, dependent: :destroy
     has_many :add_ons, through: :line_item_add_ons
 
+    after_create :add_default_add_ons
     attr_accessible :add_on_ids
 
     meta = {
@@ -21,6 +22,10 @@ module Spree
       add_ons.map do |add_on|
         add_on.price_in(currency).amount || 0
       end.reduce(0, :+)
+    end
+
+    def add_default_add_ons
+      self.add_ons << self.product.add_ons.default
     end
   end
 end

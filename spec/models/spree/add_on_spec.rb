@@ -20,6 +20,12 @@ describe Spree::AddOn do
     end
   end
 
+  describe '::default' do
+    let(:default_add_on) { create :add_on, default: true }
+    subject { Spree::AddOn.default }
+    it { should match_array [default_add_on] }
+  end
+
   describe '::types' do
     class Spree::AddOn::DummyAddOn < Spree::AddOn
     end
