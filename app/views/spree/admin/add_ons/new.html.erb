@@ -1,0 +1,19 @@
+<%= form_for @add_on, url: admin_product_add_ons_path(@product), as: :add_on  do |f| %>
+  <fieldset data-hook="new-add-on">
+    <legend align="center"><%= t(:new_add_on) %></legend>
+
+      <%= render :partial => 'form', :locals => { :f => f } %>
+
+      <div class="form-buttons filter-actions actions" data-hook="buttons">
+        <%= button t(:create), 'icon-plus' %>
+        <span class="or"><%= t(:or) %></span>
+        <%= link_to_with_icon(
+          'icon-remove',
+          t(:cancel),
+          admin_product_add_ons_path(@product),
+          id: 'cancel_link',
+          class: 'button'
+        ) %>
+      </div>
+  </fieldset>
+<% end %>

@@ -1,0 +1,22 @@
+<div data-hook="admin_image_form_fields">
+  <div class="eight columns alpha">
+    <div data-hook="name" class="field">
+      <%= f.label Spree::AddOn.human_attribute_name(:name) %>
+      <%= f.text_field :name, class: 'fullwidth' %>
+    </div>
+  </div>
+  <div class="four columns omega">
+    <div data-hook="default" class="field checkbox">
+      <%= f.label :default, class: 'checkbox' do %>
+        <%= Spree::AddOn.human_attribute_name(:default) %>
+        <%= f.check_box :default %>
+      <% end %>
+    </div>
+  </div>
+  <div data-hook="description" class="field alpha twelve columns">
+    <%= f.label Spree::AddOn.human_attribute_name(:description) %>
+    <%= f.text_area :description, rows: 4, class: 'fullwidth no-resize' %>
+  </div>
+</div>
+
+<div class="clear"></div>

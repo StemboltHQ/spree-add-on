@@ -1,0 +1,6 @@
+<%= content_tag :li, class: (current == 'Add-Ons' ? 'active' : '') do %>
+  <%= link_to_with_icon 'icon-star',
+    Spree::AddOn.model_name.human(count: :many),
+    admin_product_add_ons_url(@product)
+  %>
+<% end %>

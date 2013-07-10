@@ -2,10 +2,15 @@ module SpreeAddOn
   module Generators
     class InstallGenerator < Rails::Generators::Base
 
-      class_option :auto_run_migrations, :type => :boolean, :default => false
+      class_option :auto_run_migrations, type: :boolean, default: false
+
+      def add_javascripts
+        append_file 'app/assets/javascripts/admin/all.js', "//= require admin/spree_add_on\n"
+      end
 
       def add_stylesheets
-        inject_into_file 'app/assets/stylesheets/store/all.css', " *= require store/spree_add_on\n", :before => /\*\//, :verbose => true
+        inject_into_file 'app/assets/stylesheets/admin/all.css', " *= require admin/spree_add_on\n", before: /\*\//, verbose: true
+        inject_into_file 'app/assets/stylesheets/store/all.css', " *= require store/spree_add_on\n", before: /\*\//, verbose: true
       end
 
       def add_migrations

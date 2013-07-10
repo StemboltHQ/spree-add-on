@@ -1,0 +1,32 @@
+<%= render 'spree/admin/shared/product_sub_menu' %>
+
+<%= render 'spree/admin/shared/product_tabs', current: 'Add-Ons' %>
+
+<% content_for :page_actions do %>
+  <li><%= link_to_with_icon(
+    'icon-arrow-left',
+    t(:back_to_add_ons_list),
+    admin_product_add_ons_path(@product),
+    class: 'button'
+  ) %></li>
+<% end %>
+
+<%= form_for @add_on, url: admin_product_add_on_path(@product, @add_on), as: :add_on  do |f| %>
+  <fieldset data-hook="update-add-on">
+    <legend align="center"><%= t(:update_add_on) %></legend>
+
+      <%= render :partial => 'form', :locals => { :f => f } %>
+
+      <div class="form-buttons filter-actions actions" data-hook="buttons">
+        <%= button t(:update), 'icon-refresh' %>
+        <span class="or"><%= t(:or) %></span>
+        <%= link_to_with_icon(
+          'icon-remove',
+          t(:cancel),
+          admin_product_add_ons_path(@product),
+          id: 'cancel_link',
+          class: 'button'
+        ) %>
+      </div>
+  </fieldset>
+<% end %>

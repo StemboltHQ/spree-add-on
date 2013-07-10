@@ -1,0 +1,56 @@
+<%= render 'spree/admin/shared/product_sub_menu' %>
+
+<%= render 'spree/admin/shared/product_tabs', current: 'Add-Ons' %>
+
+<% content_for :page_actions do %>
+  <li><%= link_to_with_icon(
+    'icon-plus',
+    t(:new_add_on),
+    new_admin_product_add_on_path(@product),
+    id: 'new-add-on-link',
+    class: 'button'
+  ) %></li>
+<% end %>
+
+<%# Place for new add_on form %>
+<div id="new-add-on" data-hook></div>
+
+<% if @add_ons.any? %>
+  <table class='index'>
+    <thead data-hook='add_ons_header'>
+      <th><%= Spree::AddOn.human_attribute_name(:name) %></th>
+      <th><%= Spree::AddOn.human_attribute_name(:description) %></th>
+      <th><%= Spree::AddOn.human_attribute_name(:default_price) %></th>
+      <th class='actions'></th>
+    </thead>
+    <tbody>
+      <% @add_ons.each do |add_on| %>
+        <%= content_tag(
+          :tr,
+          id: spree_dom_id(add_on),
+          class: cycle('odd', 'even'),
+          data: {hook: 'add_ons_row'}
+        ) do %>
+          <td class='align-center'><%= add_on.name %></td>
+          <td class='align-center'><%= add_on.description %></td>
+          <td class='align-center'><%= add_on.display_amount %></td>
+          <td class='actions'>
+            <%= link_to_edit_url(
+              edit_admin_product_add_on_path(@product, add_on),
+              {no_text: true}
+            ) %>
+            <%= link_to_delete(
+              add_on,
+              {
+                url: admin_product_add_on_path(@product, add_on),
+                no_text: true
+              }
+            ) %>
+          </td>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="no-objects-found"><%= t(:no_add_ons_found)%>.</div>
+<% end %>
