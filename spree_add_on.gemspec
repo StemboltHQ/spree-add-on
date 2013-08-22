@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'spree_core', '~> 1.3.2'
-  s.add_dependency 'durable_decorator', '~> 0.0.6'
+  s.add_dependency 'durable_decorator', '~> 0.1.2'
 
   s.add_development_dependency 'capybara', '~> 2.1'
   s.add_development_dependency 'coffee-rails'

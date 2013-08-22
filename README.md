@@ -12,14 +12,6 @@ Add spree_add_on to your Gemfile:
 gem 'spree_add_on'
 ```
 
-This extension requires the durable_decorator to extend Spree line items in a nice manor. As such,
-you'll also need to add it to your Gemfile:
-
-```ruby
-gem 'durable_decorator', :github => 'jumph4x/durable_decorator'
-```
-
-
 Bundle your dependencies and run the installation generator:
 
 ```shell
