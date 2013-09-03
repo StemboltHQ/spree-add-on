@@ -3,6 +3,8 @@
     <div data-hook="name" class="field">
       <%= f.label Spree::AddOn.human_attribute_name(:name) %>
       <%= f.text_field :name, class: 'fullwidth' %>
+      <%= f.label Spree::AddOn.human_attribute_name(:expiration_days) %>
+      <%= f.text_field :expiration_days, class: 'fullwidth' %>
     </div>
   </div>
   <div class="four columns omega">

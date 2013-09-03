@@ -21,6 +21,7 @@
       <th><%= Spree::AddOn.human_attribute_name(:name) %></th>
       <th><%= Spree::AddOn.human_attribute_name(:description) %></th>
       <th><%= Spree::AddOn.human_attribute_name(:default_price) %></th>
+      <th><%= Spree::AddOn.human_attribute_name(:expires) %></th>
       <th class='actions'></th>
     </thead>
     <tbody>
@@ -34,6 +35,13 @@
           <td class='align-center'><%= add_on.name %></td>
           <td class='align-center'><%= add_on.description %></td>
           <td class='align-center'><%= add_on.display_amount %></td>
+          <td class='align-center'>
+            <% if add_on.expiration_days %>
+              <%= pluralize( add_on.expiration_days, 'day' ) %>
+            <% else %>
+              <%= I18n.t('spree.addons.never') %>
+            <% end %>
+          </td>
           <td class='actions'>
             <%= link_to_edit_url(
               edit_admin_product_add_on_path(@product, add_on),

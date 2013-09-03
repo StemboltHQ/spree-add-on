@@ -28,10 +28,10 @@ feature 'Shopping Cart' do
     end
 
     context 'with a default add-on' do
-      given!(:add_on) { create :add_on, name: 'Backup CD', product: product, price: 4.99, default: true }
+      given!(:add_on) { create :add_on, name: 'Backup CD', product: product, price: 4.99, default: true, expiration_days: 5 }
 
       scenario 'add-on is selected by default' do
-        expect(page).to have_content 'Backup CD'
+        expect(page).to have_content 'Backup CD (Expires in 5 days)'
         expect(find('#subtotal .order-total').text).to eq '$24.98'
         expect(find('#order_line_items_attributes_0_add_on_ids_1')).to be_checked
       end

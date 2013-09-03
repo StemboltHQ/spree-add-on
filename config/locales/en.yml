@@ -14,3 +14,9 @@ en:
     attributes:
       spree/add_on:
         type_description: 'Basic Add-On'
+
+  spree:
+    addons:
+      expires_in: '(Expires in %{expiration_days})'
+      never: 'Never'
+
