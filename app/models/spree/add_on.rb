@@ -29,4 +29,8 @@ class Spree::AddOn < ActiveRecord::Base
   def self.description
     self.human_attribute_name(:type_description)
   end
+
+  def display_name
+    "#{self.name} #{I18n.t('spree.addons.expires_in', count: self.expiration_days)}"
+  end
 end

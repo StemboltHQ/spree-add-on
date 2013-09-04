@@ -17,6 +17,7 @@ en:
 
   spree:
     addons:
-      expires_in: '(Expires in %{expiration_days})'
+      expires_in:
+        one: '(Expires in 1 day)'
+        other: '(Expires in %{count} days)'
       never: 'Never'
-

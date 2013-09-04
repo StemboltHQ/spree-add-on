@@ -14,7 +14,7 @@
           item_form.object.add_on_ids.include?(add_on.id),
           id: "#{"#{item_form.object_name}[add_on_ids][]".parameterize(sep='_')}_#{add_on.id}"
         ) %>
-        <%= add_on.name %> <%= if add_on.expiration_days then I18n.t('spree.addons.expires_in', expiration_days: pluralize( add_on.expiration_days, 'days' ) ) end %>
+        <%= add_on.display_name %>
         <span class='add-on-amount'>(<%= add_on.price_in(current_currency).display_amount %>)</span>
       </label>
     <% end %>

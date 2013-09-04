@@ -1,0 +1,7 @@
+<div>
+  <% item.add_ons.each do |add_on| %>
+    <div>
+      + <strong><%= add_on.price_in(@order.currency).money %></strong> <%= add_on.display_name %>
+    </div>
+  <% end %>
+</div>
