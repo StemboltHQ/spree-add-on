@@ -2,21 +2,25 @@
   <div class='pull-right'>
     <h5><%= Spree::AddOn.model_name.human(count: :many) %></h5>
     <% variant.product.add_ons.each do |add_on| %>
-      <label class='add-on-checkbox'>
-        <%= hidden_field_tag(
-          "#{item_form.object_name}[add_on_ids][]",
-          nil,
-          id: "#{"#{item_form.object_name}[add_on_ids][]".parameterize(sep='_')}_#{add_on.id}_hidden"
-        ) %>
-        <%= check_box_tag(
-          "#{item_form.object_name}[add_on_ids][]",
-          add_on.id,
-          item_form.object.add_on_ids.include?(add_on.id),
-          id: "#{"#{item_form.object_name}[add_on_ids][]".parameterize(sep='_')}_#{add_on.id}"
-        ) %>
-        <%= add_on.display_name %>
+      <div class='line-item-add-on'>
+        <label class='add-on-checkbox'>
+          <%= hidden_field_tag(
+            "#{item_form.object_name}[add_on_ids][]",
+            nil,
+            id: "#{"#{item_form.object_name}[add_on_ids][]".parameterize(sep='_')}_#{add_on.id}_hidden"
+          ) %>
+          <%= check_box_tag(
+            "#{item_form.object_name}[add_on_ids][]",
+            add_on.id,
+            item_form.object.add_on_ids.include?(add_on.id),
+            id: "#{"#{item_form.object_name}[add_on_ids][]".parameterize(sep='_')}_#{add_on.id}"
+          ) %>
+          <%= add_on.display_name %>
+        </label>
         <span class='add-on-amount'>(<%= add_on.price_in(current_currency).display_amount %>)</span>
-      </label>
+        <%= render 'spree/add_ons/add_on_description_modal', add_on: add_on %>
+      </div>
     <% end %>
   </div>
 <% end %>
+

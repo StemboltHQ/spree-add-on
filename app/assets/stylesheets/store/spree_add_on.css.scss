@@ -1,3 +1,10 @@
+$zindexModalBackdrop: 1;
+$zindexModal: 2;
+$white: white;
+$black: black;
+
+@import 'bootstrap/mixins';
+@import 'bootstrap/modals';
 @import 'store/variables';
 
 .pull-right {
@@ -8,9 +15,29 @@
   display: block;
 }
 
+.line-item-add-on {
+  vertical-align: bottom;
+  label {
+    display: inline-block;
+    vertical-align: bottom;
+  }
+}
+
 .add-on-amount {
+  vertical-align: bottom;
   font-weight: bold;
   color: $link_text_color;
+}
+
+.add-on-info {
+  vertical-align: bottom;
+  strong {
+    vertical-align: bottom;
+  }
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 
 .order-line-item-price {

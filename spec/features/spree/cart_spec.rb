@@ -7,7 +7,7 @@ feature 'Shopping Cart' do
 
   context 'when in the shopping cart' do
     given!(:product) { create :product, name: 'Starcraft', price: 19.99 }
-    given!(:add_on) { create :add_on, name: 'Backup CD', product: product, price: 4.99 }
+    given!(:add_on) { create :add_on, name: 'Backup CD', product: product, price: 4.99, expiration_days: 5 }
 
     background do
       visit spree.products_path

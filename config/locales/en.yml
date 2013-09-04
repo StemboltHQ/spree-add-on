@@ -5,6 +5,7 @@ en:
   no_add_ons_found: 'No Add-Ons Found'
   back_to_add_ons_list: 'Back to Add-Ons List'
   new_add_on: 'New Add-On'
+  close: 'Close'
 
   activerecord:
     models:
@@ -21,3 +22,6 @@ en:
         one: '(Expires in 1 day)'
         other: '(Expires in %{count} days)'
       never: 'Never'
+      cost: 'Cost'
+      expires: 'Expires'
+      days: 'Days'

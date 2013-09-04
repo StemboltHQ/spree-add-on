@@ -1,0 +1,24 @@
+<%= link_to("#modal-#{add_on.hash}", class: :btn, data: { toggle: 'modal' }) do %>
+  <span class='add-on-info'>[&nbsp;<strong>?</strong>&nbsp;]</span>
+<% end %>
+
+<%= content_tag( :div, id: "modal-#{add_on.hash}", class: 'modal hide fade', tabindex: -1, role: 'dialog', 'aria-hidden'=>true) do %>
+  <div class="modal-header">
+    <button type="button" class="pull-right close" data-dismiss="modal" aria-hidden="true">x</button>
+    <h3><%= add_on.name %></h3>
+  </div>
+  <div class="modal-body">
+    <p><%= add_on.description %></p>
+    <p>
+      <div>
+        <strong><%= I18n.t('spree.addons.cost') %>:</strong> <%= add_on.price_in(current_currency).display_amount %>
+      </div>
+      <div>
+        <strong><%= I18n.t('spree.addons.expires') %>:</strong> <%= l(DateTime.now + add_on.expiration_days.days, format: :long) %>
+      </div>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="pull-right close" data-dismiss="modal" aria-hidden="true"><%= I18n.t(:close) %></button>
+  </div>
+<% end %>
