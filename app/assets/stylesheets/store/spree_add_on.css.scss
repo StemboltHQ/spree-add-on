@@ -12,3 +12,17 @@
   font-weight: bold;
   color: $link_text_color;
 }
+
+.order-line-item-price {
+  font-weight: bold;
+  text-align: right;
+  color: #00adee;
+
+  .final-price {
+    text-decoration: underline;
+  }
+  .original-price {
+    text-decoration: line-through;
+  }
+}
+

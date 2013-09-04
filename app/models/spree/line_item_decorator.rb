@@ -17,6 +17,10 @@ module Spree
       (price + add_on_amount) * quantity
     end
 
+    def single_money_with_add_ons
+      Spree::Money.new(price + add_on_amount, currency: order.currency)
+    end
+
     private
     def add_on_amount
       add_ons.map do |add_on|

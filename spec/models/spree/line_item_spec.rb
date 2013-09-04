@@ -34,4 +34,17 @@ describe Spree::LineItem do
       it { should eq BigDecimal.new('5.00') }
     end
   end
+
+  describe '#single_money_with_add_ons' do
+    let(:line_item) { create :line_item }
+
+    before do
+      ids = 2.times.map { create(:add_on, price: 4.99).id }
+      line_item.add_on_ids = ids
+      line_item.save!
+    end
+
+    subject { line_item }
+    its(:single_money_with_add_ons) { should == Spree::Money.new( line_item.price + (4.99 * 2), currency: 'USD' ) }
+  end
 end

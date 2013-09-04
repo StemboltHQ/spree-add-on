@@ -1,0 +1,17 @@
+<div class="order-line-item-price price">
+  <% if item.add_ons.empty? %>
+    <%= item.single_money %>
+  <% else %>
+    <div class="original-price">
+      <%= item.single_money %>
+    </div>
+    <% item.add_ons.each do |add_on| %>
+      <div>
+        +&nbsp;<%= add_on.price_in(@order.currency).money %>
+      </div>
+    <% end %>
+    <div class="final-price">
+      <%= item.single_money_with_add_ons %>
+    </div>
+  <% end %>
+</div>
