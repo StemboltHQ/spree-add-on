@@ -1,11 +1,33 @@
 require 'spec_helper'
 
 describe Spree::LineItemAddOn do
+  let(:add_on) { stub_model Spree::AddOn, expiration_days: expiration_date }
+
   it { should belong_to :add_on }
   it { should belong_to :line_item }
 
+  it { should_not allow_value(nil).for(:add_on) }
+  it { should_not allow_value(nil).for(:line_item) }
+
+  describe 'after_create' do
+    let(:line_item) { create :line_item }
+    let(:add_on) { create :add_on, expiration_days: expiration_days, price: add_on_cost }
+    let(:add_on_cost) { 1.23 }
+    let(:expiration_days) { 7 }
+
+    before do
+      line_item.add_on_ids = [add_on.id]
+      line_item.save!
+    end
+
+    subject { line_item.line_item_add_ons.first }
+
+    its(:price) { should == add_on_cost }
+    its(:expiration_date) { should == DateTime.current + expiration_days.days }
+    its(:money) { should == Spree::Money.new( add_on_cost, currency: line_item.order.currency ) }
+  end
+
   describe '#expired?' do
-    let(:add_on) { stub_model Spree::AddOn, expiration_days: expiration_date }
     let(:line_item_addon) { stub_model Spree::LineItemAddOn, add_on: add_on, created_at: created_at }
 
     subject { line_item_addon }

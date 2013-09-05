@@ -5,9 +5,9 @@
     <div class="original-price">
       <%= item.single_money %>
     </div>
-    <% item.add_ons.each do |add_on| %>
+    <% item.line_item_add_ons.each do |line_item_add_on| %>
       <div>
-        +&nbsp;<%= add_on.price_in(@order.currency).money %>
+        +&nbsp;<%= line_item_add_on.money %>
       </div>
     <% end %>
     <div class="final-price">
