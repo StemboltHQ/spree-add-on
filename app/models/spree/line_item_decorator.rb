@@ -23,8 +23,8 @@ module Spree
 
     private
     def add_on_amount
-      add_ons.map do |add_on|
-        add_on.price_in(currency).amount || 0
+      line_item_add_ons.map do |line_item_add_on|
+        line_item_add_on.price || 0
       end.reduce(0, :+)
     end
 
