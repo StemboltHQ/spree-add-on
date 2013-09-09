@@ -47,4 +47,18 @@ describe Spree::LineItem do
     subject { line_item }
     its(:single_money_with_add_ons) { should == Spree::Money.new( line_item.price + (4.99 * 2), currency: 'USD' ) }
   end
+
+  describe "#price_with_add_ons_unchanged?" do
+    let(:line_item) { build :line_item }
+    let(:money) { Spree::Money.new( 10, currency: 'CAD' ) }
+
+    subject{ line_item }
+
+    before do
+      line_item.stub(single_money_with_add_ons: money)
+      line_item.stub(single_money: money)
+    end
+
+    its(:price_with_add_ons_unchanged?) { should be_true }
+  end
 end

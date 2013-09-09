@@ -1,5 +1,5 @@
 <div class="order-line-item-price price">
-  <% if item.add_ons.empty? %>
+  <% if item.price_with_add_ons_unchanged? %>
     <%= item.single_money %>
   <% else %>
     <div class="original-price">

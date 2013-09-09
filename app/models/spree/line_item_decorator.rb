@@ -17,6 +17,10 @@ module Spree
       (price + add_on_amount) * quantity
     end
 
+    def price_with_add_ons_unchanged?
+      single_money_with_add_ons == single_money
+    end
+
     def single_money_with_add_ons
       Spree::Money.new(price + add_on_amount, currency: order.currency)
     end
