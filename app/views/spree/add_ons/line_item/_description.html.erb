@@ -1,0 +1,5 @@
+<%= line_item_description_text(line_item.description) %>
+<% if line_item.variant.product.add_on? %>
+  <%= render 'spree/add_ons/add_on_description_modal', add_on: line_item.add_ons.first %>
+<% end %>
+

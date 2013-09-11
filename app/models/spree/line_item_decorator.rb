@@ -25,6 +25,14 @@ module Spree
       Spree::Money.new(price + add_on_amount, currency: order.currency)
     end
 
+    def name
+      read_attribute(:name) || variant.name
+    end
+
+    def description
+      read_attribute(:description) || variant.description
+    end
+
     private
     def add_on_amount
       line_item_add_ons.map do |line_item_add_on|
