@@ -23,8 +23,10 @@ describe Spree::LineItemAddOn do
     subject { line_item.line_item_add_ons.first }
 
     its(:price) { should == add_on_cost }
-    its(:expiration_date) { should == DateTime.current + expiration_days.days }
     its(:money) { should == Spree::Money.new( add_on_cost, currency: line_item.order.currency ) }
+    it 'has the correct expiry date' do
+      expect ( subject.expiration_date.to_date ) == (Date.current + expiration_days.days)
+    end
   end
 
   describe '#expired?' do
