@@ -55,4 +55,21 @@ describe Spree::LineItemAddOn do
       end
     end
   end
+
+  describe '#purchased!' do
+    let(:line_item_add_on) { Spree::LineItemAddOn.new }
+
+    let(:add_on) { stub_model Spree::AddOn }
+    let(:line_item) { stub_model Spree::LineItem }
+
+    before do
+      line_item_add_on.add_on = add_on
+      line_item_add_on.line_item = line_item
+    end
+
+    it 'should call purchased! on the add on' do
+      expect(add_on).to receive(:purchased!).with(line_item)
+      line_item_add_on.purchased!
+    end
+  end
 end

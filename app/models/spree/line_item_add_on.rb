@@ -18,6 +18,10 @@ class Spree::LineItemAddOn < ActiveRecord::Base
     Spree::Money.new( self.price, currency: currency )
   end
 
+  def purchased!
+    add_on.purchased! line_item
+  end
+
   private
   def set_price_and_expiration_date
     self.expiration_date = DateTime.current + expiration_days.days if expiration_days
