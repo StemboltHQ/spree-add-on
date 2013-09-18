@@ -13,9 +13,11 @@
       <div>
         <strong><%= I18n.t('spree.addons.cost') %>:</strong> <%= add_on.price_in(current_currency).display_amount %>
       </div>
-      <div>
-        <strong><%= I18n.t('spree.addons.expires') %>:</strong> <%= l(DateTime.now + add_on.expiration_days.days, format: :long) %>
-      </div>
+      <% if add_on.expiration_days %>
+        <div>
+          <strong><%= I18n.t('spree.addons.expires') %>:</strong> <%= l(DateTime.now + add_on.expiration_days.days, format: :long) %>
+        </div>
+      <% end %>
     </p>
   </div>
   <div class="modal-footer">
