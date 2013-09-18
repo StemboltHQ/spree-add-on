@@ -4,6 +4,8 @@ class Spree::LineItemAddOn < ActiveRecord::Base
   belongs_to :add_on
   belongs_to :line_item
 
+  delegate :expiration_days, to: :add_on
+
   after_create :set_price_and_expiration_date
 
   def expired?
@@ -18,7 +20,7 @@ class Spree::LineItemAddOn < ActiveRecord::Base
 
   private
   def set_price_and_expiration_date
-    self.expiration_date = DateTime.current + self.add_on.expiration_days.days
+    self.expiration_date = DateTime.current + expiration_days.days if expiration_days
 
     self.price = self.add_on.price_in(currency).amount
     self.save!
