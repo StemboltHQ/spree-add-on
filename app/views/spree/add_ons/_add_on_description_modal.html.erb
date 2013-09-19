@@ -1,8 +1,5 @@
-<%= link_to("#modal-#{add_on.hash}", class: :btn, data: { toggle: 'modal' }) do %>
-  <span class='add-on-info'>[&nbsp;<strong>?</strong>&nbsp;]</span>
-<% end %>
-
-<%= content_tag( :div, id: "modal-#{add_on.hash}", class: 'modal hide fade', tabindex: -1, role: 'dialog', 'aria-hidden'=>true) do %>
+<% random = Random.rand(10000)%>
+<%= content_tag( :div, id: "modal-#{random}-#{add_on.hash}", class: 'modal hide fade', tabindex: -1, role: 'dialog', 'aria-hidden'=>true) do %>
   <div class="modal-header">
     <button type="button" class="pull-right close" data-dismiss="modal" aria-hidden="true">x</button>
     <h3><%= add_on.name %></h3>
@@ -23,4 +20,9 @@
   <div class="modal-footer">
     <button type="button" class="pull-right close" data-dismiss="modal" aria-hidden="true"><%= I18n.t(:close) %></button>
   </div>
+  <div></div>
+<% end %>
+
+<%= link_to("#modal-#{random}-#{add_on.hash}", class: :btn, data: { toggle: 'modal' }) do %>
+  <span class='add-on-info'>[&nbsp;<strong>?</strong>&nbsp;]</span>
 <% end %>
