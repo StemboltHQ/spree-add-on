@@ -31,7 +31,7 @@ class Spree::AddOn < ActiveRecord::Base
   end
 
   def display_name
-    "#{self.name} #{I18n.t('spree.addons.expires_in', count: self.expiration_days)}"
+    "#{self.name} #{I18n.t('spree.addons.expires_in', count: self.expiration_days) if self.expiration_days}".strip
   end
 
   def purchased!(line_item)

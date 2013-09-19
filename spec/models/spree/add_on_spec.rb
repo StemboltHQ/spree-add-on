@@ -20,6 +20,18 @@ describe Spree::AddOn do
     end
   end
 
+  describe '#display_name' do
+    subject { add_on.display_name }
+
+    it { should == add_on.name + " (Expires in 30 days)"}
+
+    context 'add on has no expiration' do
+      let(:add_on) { build :add_on, expiration_days: nil }
+      it { should == add_on.name }
+    end
+
+  end
+
   describe '::default' do
     let(:default_add_on) { create :add_on, default: true }
     subject { Spree::AddOn.default }
@@ -41,4 +53,5 @@ describe Spree::AddOn do
     subject { Spree::AddOn.description }
     it { should eq Spree::AddOn.human_attribute_name(:type_description) }
   end
+
 end
